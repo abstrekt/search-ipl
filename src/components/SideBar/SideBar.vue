@@ -56,6 +56,7 @@ export default {
     },
   },
   data: () => ({
+    navbar: 'true',
     active: 'home',
     selectedItem: 1,
     teams: [
