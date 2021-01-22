@@ -59,23 +59,6 @@ export default {
     navbar: 'true',
     active: 'home',
     selectedItem: 1,
-    teams: [
-      'Pune Warriors',
-      'Kolkata Knight Riders',
-      'Rajasthan Royals',
-      'Kochi Tuskers Kerala',
-      'Gujarat Lions',
-      'Chennai Super Kings',
-      'Rising Pune Supergiants',
-      'Delhi Daredevils',
-      'Deccan Chargers',
-      'Delhi Capitals',
-      'Mumbai Indians',
-      'Sunrisers Hyderabad',
-      'Rising Pune Supergiant',
-      'Royal Challengers Bangalore',
-      'Kings XI Punjab',
-    ],
   }),
 };
 </script>
