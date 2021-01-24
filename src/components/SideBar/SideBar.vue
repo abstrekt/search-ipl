@@ -58,7 +58,7 @@ export default {
   data: () => ({
     navbar: 'true',
     active: 'home',
-    selectedItem: 1,
+    selectedItem: 0,
   }),
 };
 </script>

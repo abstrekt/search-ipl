@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-3 pa-1" width="300" flat outlined>
+  <v-card class="ma-3 pa-1 f-filter" width="300" flat outlined>
     <v-row>
       <v-col class="pb-0">
         <span class="overline ml-3">Filter</span>
@@ -16,47 +16,64 @@
           label="Country"
           dense
           hide-details=""
+          color="#42a2a2"
         ></v-select>
       </v-col>
     </v-row>
     <v-divider></v-divider>
     <v-row>
       <v-col>
-        <v-list dense nav>
-          <v-list-group :value="true">
+        <v-list dense nav flat>
+          <v-list-group flat dense :value="true">
             <template v-slot:activator>
-              <v-list-item-title>Player Type</v-list-item-title>
+              <v-list-item-title>
+                Player Type
+                <v-badge
+                  transition=""
+                  class="mt-0"
+                  dot
+                  inline
+                  v-if="batModel.length || bowlTypeModel.length"
+                  color="#42a2a2"
+                ></v-badge>
+              </v-list-item-title>
             </template>
 
-            <v-list-group  no-action sub-group>
+            <v-list-group dense no-action sub-group>
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title>Batsmen</v-list-item-title>
                 </v-list-item-content>
               </template>
-              <v-list-item-group multiple>
-                <v-list-item v-for="([title, icon], i) in admins" :key="i" link>
-                  <v-list-item-title v-text="title"> </v-list-item-title>
-                  <!-- <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
-                </v-list-item-icon> -->
+              <v-list-item-group multiple v-model="batModel">
+                <v-list-item
+                  color="#42a2a2"
+                  v-for="([title, icon], i) in batType"
+                  :key="i"
+                  link
+                >
+                  <v-list-item-title>
+                    {{ title }}
+                  </v-list-item-title>
+                  <!-- <v-list-item-icon> -->
+                  <v-badge inline :content="getRandomInt(0, 500)"></v-badge>
+                  <!-- </v-list-item-icon> -->
                 </v-list-item>
               </v-list-item-group>
             </v-list-group>
 
-            <v-list-group no-action sub-group>
+            <v-list-group flat no-action color="red" sub-group>
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title>Bowler</v-list-item-title>
                 </v-list-item-content>
               </template>
-              <v-list-item-group multiple>
-                <v-list-item v-for="([title, icon], i) in cruds" :key="i" link>
-                  <!-- <v-list-item-icon>
-                  <v-icon >mdi-square-rounded-outline</v-icon>
-                </v-list-item-icon> -->
-                  <v-list-item-title v-text="title"></v-list-item-title> </v-list-item
-              ></v-list-item-group>
+              <v-list-item-group v-model="bowlTypeModel" multiple>
+                <v-list-item color="#42a2a2" v-for="(type, i) in bowlType" :key="i" link>
+                  <v-list-item-title v-text="type"></v-list-item-title>
+                  <v-badge inline :content="getRandomInt(0, 400)"></v-badge>
+                </v-list-item>
+              </v-list-item-group>
             </v-list-group>
           </v-list-group>
         </v-list>
@@ -69,7 +86,15 @@
           <v-list-group :value="true" no-action>
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>Batting Stats</v-list-item-title>
+                <v-list-item-title
+                  >Batting Stats<v-badge
+                    class="mt-0"
+                    dot
+                    v-if="r2[0] != 0 || r2[1] != 88 || r1[0] != 0 || r1[1] != 250"
+                    inline
+                    color="#42a2a2"
+                  ></v-badge
+                ></v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item class="caption mb-0">
@@ -81,8 +106,8 @@
               <v-row class="mr-1">
                 <v-range-slider
                   thumb-color="red"
-                  max="160"
-                  min="95"
+                  max="250"
+                  min="0"
                   v-model="r1"
                   track-color="pink"
                   track-fill-color="green"
@@ -99,7 +124,7 @@
             <v-list-item>
               <v-row class="mr-1">
                 <v-range-slider
-                  max="100"
+                  max="88"
                   min="0"
                   v-model="r2"
                   class="mt-2"
@@ -113,15 +138,28 @@
     <v-divider></v-divider>
     <v-row>
       <v-col>
-        <v-list dense>
+        <v-list flat dense>
           <v-list-group :value="true">
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>Teams</v-list-item-title>
+                <v-list-item-title
+                  >Teams<v-badge
+                    class="mt-0"
+                    dot
+                    v-if="selectedTeams.length"
+                    inline
+                    color="#42a2a2"
+                  ></v-badge
+                ></v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item-group multiple>
-              <v-list-item v-for="(team, i) in teams" :key="i" class="pl-10">
+            <v-list-item-group multiple v-model="selectedTeams">
+              <v-list-item
+                color="#42a2a2"
+                v-for="(team, i) in teams"
+                :key="i"
+                class="pl-10"
+              >
                 <template v-slot:default="{}">
                   <!-- <v-list-item-action>
                   <v-checkbox :input-value="active" color="rgb(81, 204, 204)"></v-checkbox>
@@ -130,6 +168,7 @@
                   <v-list-item-content>
                     <v-list-item-title>{{ team }}</v-list-item-title>
                   </v-list-item-content>
+                    <v-badge inline :content="getRandomInt(13,25)"></v-badge>
                 </template>
               </v-list-item>
             </v-list-item-group>
@@ -142,7 +181,15 @@
       <v-col>
         <v-list dense nav>
           <v-list-item class="caption mb-0">
-            <v-list-item-title class="subtitle-1">Birth Year</v-list-item-title>
+            <v-list-item-title class="subtitle-1"
+              >Birth Year<v-badge
+                class="mt-0"
+                v-if="by[0] != 1969 || by[1] != 1998"
+                dot
+                inline
+                color="#42a2a2"
+              ></v-badge
+            ></v-list-item-title>
             <v-spacer></v-spacer>
             <v-list-item-subtitle class="text-right">
               {{ `${by[0]} - ${by[1]}` }}
@@ -152,8 +199,8 @@
             <v-row class="mr-1">
               <v-range-slider
                 thumb-color="red"
-                max="2002"
-                min="1960"
+                max="1998"
+                min="1969"
                 v-model="by"
                 track-color="pink"
                 track-fill-color="green"
@@ -171,6 +218,13 @@
 <script>
 export default {
   name: 'facet-filter',
+  methods: {
+    getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+  },
   data: () => ({
     countryList: [
       'Afghanistan',
@@ -423,19 +477,32 @@ export default {
       'Zimbabwe',
       'Åland Islands',
     ],
-    r1: [0, 100],
-    r2: [0, 100],
-    by: [1960, 2002],
-    admins: [
+    title: '',
+    r2: [0, 88],
+    r1: [0, 250],
+    by: [1969, 1998],
+    batType: [
       ['Right Handed', 'mdi-account-multiple-outline'],
       ['Left Handed', 'mdi-cog-outline'],
     ],
-    cruds: [
-      ['Create', 'mdi-plus-outline'],
-      ['Read', 'mdi-file-outline'],
-      ['Update', 'mdi-update'],
-      ['Delete', 'mdi-delete'],
+    batModel: [],
+    bowlType: [
+      'Legbreak',
+      'Slow left-arm chinaman',
+      'Left-arm fast-medium',
+      'Right-arm offbreak',
+      'Legbreak googly',
+      'Slow left-arm orthodox',
+      'Right-arm medium',
+      'Right-arm medium-fast',
+      'Right-arm fast-medium',
+      'Right-arm fast',
+      'Left-arm medium',
+      'Left-arm medium-fast',
+      'Left-arm fast',
+      'Right-arm bowler',
     ],
+    bowlTypeModel: [],
     teams: [
       'Pune Warriors',
       'Kolkata Knight Riders',
@@ -453,6 +520,7 @@ export default {
       'Royal Challengers Bangalore',
       'Kings XI Punjab',
     ],
+    selectedTeams: [],
   }),
 };
 </script>
@@ -463,5 +531,17 @@ export default {
   height: 18px !important;
   left: -3px !important;
   top: -3px !important;
+}
+.f-filter {
+  .v-list-group__header,
+  .v-list-item--dense,
+  .v-list--dense .v-list-item {
+    height: 30px;
+    min-height: 30px;
+  }
+  .v-list-item--dense .v-list-item__icon,
+  .v-list--dense .v-list-item .v-list-item__icon {
+    margin-top: 2px;
+  }
 }
 </style>
