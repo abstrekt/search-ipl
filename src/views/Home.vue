@@ -9,7 +9,7 @@
           <v-col cols="8">7,654 results found in 5ms</v-col>
           <v-col cols="2">
             <v-select
-              color="red"
+              color=""
               solo
               dense
               placeholder="Sort"
@@ -17,7 +17,7 @@
               outlined
               rounded
               prepend-icon="mdi-sort-ascending"
-              item-color="orange"
+              item-color=""
               :items="['Player Name', 'highest RR', 'Highest Average']"
               v-model="sort"
               hide-details
@@ -25,7 +25,7 @@
           </v-col>
 
           <v-col cols="2">
-            <v-btn-toggle mandatory dense>
+            <v-btn-toggle color="primary darken-3" mandatory dense>
               <v-btn>
                 <v-icon>
                   mdi-format-list-bulleted
