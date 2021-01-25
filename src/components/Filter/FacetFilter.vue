@@ -1,8 +1,21 @@
 <template>
   <v-card class="ma-3 pa-1 f-filter" width="300" flat outlined>
-    <v-row>
-      <v-col class="pb-0">
+    <v-row align-content="space-between">
+      <v-col class="pb-0" cols="6">
         <span class="overline ml-3">Filter</span>
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-col class="pb-0 text-right" v-if="filters" cols="6" align-self="center">
+        <v-btn
+          color="accent darken-3"
+          class="text-capitalize overline"
+          small
+          depressed
+          plain
+          :ripple="false"
+        >
+          Clear Filter
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -98,19 +111,24 @@
     <v-row>
       <v-col>
         <v-list dense nav>
-          <v-list-group active-class="no-effect" class="no-effect-fix" :ripple="false" :value="true" >
+          <v-list-group
+            active-class="no-effect"
+            class="no-effect-fix"
+            :ripple="false"
+            :value="true"
+          >
             <template v-slot:activator>
               <v-list-item-content>
-              <v-list-item-title
-                >Batting Stats
-                <v-badge
-                  color="accent"
-                  class="mt-0"
-                  dot
-                  v-if="r2[0] != 0 || r2[1] != 88 || r1[0] != 0 || r1[1] != 250"
-                  inline
-                ></v-badge
-              ></v-list-item-title>
+                <v-list-item-title
+                  >Batting Stats
+                  <v-badge
+                    color="accent"
+                    class="mt-0"
+                    dot
+                    v-if="r2[0] != 0 || r2[1] != 88 || r1[0] != 0 || r1[1] != 250"
+                    inline
+                  ></v-badge
+                ></v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item class="caption mb-0">
@@ -494,6 +512,7 @@ export default {
       'Zimbabwe',
       'Åland Islands',
     ],
+    filters: false,
     title: '',
     r2: [0, 88],
     r1: [0, 250],
