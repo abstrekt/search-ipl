@@ -49,13 +49,13 @@
           </v-col>
 
           <v-col cols="2">
-            <v-btn-toggle tile value="1" color="primary darken-3" mandatory dense>
-              <v-btn :ripple="false">
+            <v-btn-toggle tile :value="1" color="primary darken-3" mandatory dense>
+              <v-btn :ripple="false" disabled>
                 <v-icon>
                   mdi-format-list-bulleted
                 </v-icon>
               </v-btn>
-              <v-btn :ripple="false">
+              <v-btn :ripple="false" >
                 <v-icon>
                   mdi-view-grid-outline
                 </v-icon>
@@ -64,25 +64,25 @@
           </v-col>
         </v-row>
         <v-row>
-            <v-container grid-list-xs class="results-container">
-              <v-row>
-                <v-col cols="4" v-for="n in 25" :key="n">
-                  <v-card class="mx-auto" max-width="400">
-                    <v-img
-                      class="white--text align-end"
-                      height="200px"
-                      src="@/assets/players/virat.jpg"
-                    >
-                      <v-card-title>Viral Kohli</v-card-title>
-                    </v-img>
-                    <v-card-subtitle class="pb-0"> Mumbai Indians</v-card-subtitle>
-                    <v-card-text class="text--primary">
-                      <div>10-06-1981 • Right Hand • Right-arm medium • India</div>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
+          <v-container grid-list-xs class="results-container">
+            <v-row>
+              <v-col cols="4" v-for="n in 25" :key="n">
+                <v-card class="mx-auto" tile hover max-width="400">
+                  <v-img
+                    class="white--text align-end"
+                    height="200px"
+                    src="@/assets/players/virat.jpg"
+                  >
+                    <v-card-title>Virat Kohli</v-card-title>
+                  </v-img>
+                  <v-card-subtitle class="pb-0"> Mumbai Indians</v-card-subtitle>
+                  <v-card-text class="text--primary">
+                    <div>10-06-1981 • Right Hand • Right-arm medium • India</div>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
           <v-row class="mt-5">
             <v-col>
               <div class="text-center">
