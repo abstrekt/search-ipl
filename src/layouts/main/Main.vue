@@ -48,10 +48,6 @@ import { types } from 'node-sass';
         <router-view></router-view>
       </v-container>
     </v-main>
-
-    <v-footer app>
-      <!-- -->
-    </v-footer>
   </v-app>
 </template>
 

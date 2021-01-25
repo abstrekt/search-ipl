@@ -30,6 +30,7 @@
           dense
           hide-details=""
           color=""
+          filled
         ></v-select>
       </v-col>
     </v-row>

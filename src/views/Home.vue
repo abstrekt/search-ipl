@@ -83,7 +83,7 @@
               </v-col>
             </v-row>
           </v-container>
-          <v-row class="mt-5">
+          <v-row class="my-5">
             <v-col>
               <div class="text-center">
                 <v-pagination v-model="page" :length="4" circle></v-pagination>
