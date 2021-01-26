@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col cols="3" v-if="!isMobile">
-        <FacetFilter> </FacetFilter>
+        <FacetFilter :filter="false"> </FacetFilter>
       </v-col>
       <v-col cols="12" md="9">
         <v-row justify="space-between" align="center">
@@ -43,7 +43,7 @@
               rounded
               prepend-icon="mdi-sort-ascending"
               item-color=""
-              :items="['Player Name', 'highest RR', 'Highest Average']"
+              :items="['Player Name', 'Run Rate', 'Average']"
               v-model="sort"
               hide-details
             ></v-select>

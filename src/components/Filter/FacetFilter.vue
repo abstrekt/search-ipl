@@ -7,7 +7,7 @@
       <v-spacer></v-spacer>
       <v-col class="pb-0 text-right" v-if="filters" cols="6" align-self="center">
         <v-btn
-          color="accent darken-3"
+          color="blue darken-3"
           class="text-capitalize overline"
           small
           depressed
@@ -31,6 +31,7 @@
           hide-details=""
           color=""
           filled
+          :value="countrySel"
         ></v-select>
       </v-col>
     </v-row>
@@ -59,6 +60,7 @@
               dense
               no-action
               sub-group
+              :value="playertype.bat"
             >
               <template v-slot:activator>
                 <v-list-item-content>
@@ -66,17 +68,15 @@
                 </v-list-item-content>
               </template>
               <v-list-item-group multiple v-model="batModel">
-                <v-list-item v-for="([title, icon], i) in batType" :key="i" link>
+                <v-list-item v-for="(title, i) in batType" :key="i" link>
                   <v-list-item-title>
                     {{ title }}
                   </v-list-item-title>
-                  <!-- <v-list-item-icon> -->
                   <v-badge
                     color="accent"
                     inline
                     :content="getRandomInt(0, 500)"
                   ></v-badge>
-                  <!-- </v-list-item-icon> -->
                 </v-list-item>
               </v-list-item-group>
             </v-list-group>
@@ -87,6 +87,7 @@
               flat
               no-action
               sub-group
+              :value="playertype.bowl"
             >
               <template v-slot:activator>
                 <v-list-item-content>
@@ -174,7 +175,7 @@
     <v-row>
       <v-col>
         <v-list flat dense>
-          <v-list-group active-class="no-effect" :ripple="false" :value="true">
+          <v-list-group active-class="no-effect" :ripple="false" :value="teamDrop">
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title
@@ -254,14 +255,45 @@
 <script>
 export default {
   name: 'facet-filter',
+  props: {
+    filters: {
+      type: Boolean,
+      required: true,
+    },
+  },
   methods: {
     getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
+    applyFilter() {
+      // Applying some random filters ** doesn't afffect content
+      if (this.filters) {
+        this.batModel.push(1);
+        this.bowlTypeModel = [1, 3, 4];
+        this.countrySel = 'India';
+        this.playertype.bat = true;
+        this.playertype.bowl = true;
+        this.by = [1980, 1995];
+        this.selectedTeams = [4, 5, 6, 7, 11, 13];
+        this.r2 = [20, 50];
+        this.r1 = [100, 200];
+        this.teamDrop = true;
+      }
+    },
+  },
+  computed: {},
+  created() {
+    this.applyFilter();
   },
   data: () => ({
+    countrySel: '',
+    playertype: {
+      bat: false,
+      bowl: false,
+    },
+    teamDrop: false,
     countryList: [
       'India',
       'Bangladesh',
@@ -275,15 +307,11 @@ export default {
       'Zimbabwea',
       'Netherland',
     ],
-    filters: false,
     title: '',
     r2: [0, 88],
     r1: [0, 250],
     by: [1969, 1998],
-    batType: [
-      ['Right Handed', 'mdi-account-multiple-outline'],
-      ['Left Handed', 'mdi-cog-outline'],
-    ],
+    batType: ['Right Handed', 'Left Handed'],
     batModel: [],
     bowlType: [
       'Legbreak',

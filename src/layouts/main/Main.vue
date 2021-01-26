@@ -46,6 +46,11 @@ import { types } from 'node-sass';
     <v-app-bar app elevation="0" dark color="#202020">
       <v-app-bar-nav-icon v-if="isMobile" @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>[Development - Demo]</v-toolbar-title>
+      <v-col>
+        <router-link :to="'/results'">
+        <v-btn color="primary">filter view</v-btn>
+        </router-link>
+      </v-col>
 
       <v-spacer></v-spacer>
 
@@ -86,6 +91,18 @@ import { types } from 'node-sass';
         <router-view :isMobile="isMobile"></router-view>
       </v-container>
     </v-main>
+    <!-- <v-footer app> -->
+    <v-app-bar color="white" v-if="isMobile" bottom fixed>
+      <v-row align="center" justify="center" class="text-center">
+        <v-col>
+          <v-btn block depressed plain :ripple="false" color="">Sort</v-btn>
+        </v-col>
+        <v-col>
+          <v-btn block depressed plain :ripple="false" color="">Filter</v-btn>
+        </v-col>
+      </v-row>
+    </v-app-bar>
+    <!-- </v-footer> -->
   </v-app>
 </template>
 
