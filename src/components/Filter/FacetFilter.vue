@@ -570,6 +570,11 @@ export default {
   top: -3px !important;
 }
 .f-filter {
+
+  max-height: 1000px;
+  overflow: auto;
+  overflow-x: hidden;
+
   .v-list-group__header,
   .v-list-item--dense,
   .v-list--dense .v-list-item {
