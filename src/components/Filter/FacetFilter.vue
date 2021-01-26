@@ -335,6 +335,7 @@ export default {
   max-height: 1000px;
   overflow: auto;
   overflow-x: hidden;
+  scrollbar-width: thin;
 
   .v-list-group__header,
   .v-list-item--dense,

@@ -1,12 +1,12 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" v-if="!isMobile">
         <FacetFilter> </FacetFilter>
       </v-col>
-      <v-col cols="9">
-        <v-row align="center">
-          <v-col cols="8">
+      <v-col cols="12" md="9">
+        <v-row justify="space-between" align="center">
+          <v-col cols="8" sm="8" md="8">
             <v-breadcrumbs
               :items="[
                 {
@@ -31,7 +31,8 @@
               </template>
             </v-breadcrumbs>
           </v-col>
-          <v-col cols="2">
+          <v-spacer></v-spacer>
+          <v-col cols="6" md="2" v-if="!isMobile">
             <v-select
               color=""
               solo
@@ -47,15 +48,15 @@
               hide-details
             ></v-select>
           </v-col>
-
-          <v-col cols="2">
+          <v-spacer></v-spacer>
+          <v-col cols="4" md="2" sm="4" class="text-right">
             <v-btn-toggle tile :value="1" color="primary darken-3" mandatory dense>
               <v-btn :ripple="false" disabled>
                 <v-icon>
                   mdi-format-list-bulleted
                 </v-icon>
               </v-btn>
-              <v-btn :ripple="false" >
+              <v-btn :ripple="false">
                 <v-icon>
                   mdi-view-grid-outline
                 </v-icon>
@@ -64,9 +65,13 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-container grid-list-xs class="results-container">
+          <v-container
+            grid-list-xs
+            class="results-container"
+            :style="{ 'scrollbar-width': 'thin' }"
+          >
             <v-row>
-              <v-col cols="4" v-for="n in 25" :key="n">
+              <v-col cols="12" md="4" sm="6" v-for="n in 25" :key="n">
                 <v-card class="mx-auto" tile hover max-width="400">
                   <v-img
                     class="white--text align-end"
@@ -101,6 +106,11 @@
 import FacetFilter from '@/components/Filter/FacetFilter';
 export default {
   name: 'Home',
+  props: {
+    isMobile: {
+      type: Boolean,
+    }
+  },
   data: () => ({
     sort: '',
     page: 1,

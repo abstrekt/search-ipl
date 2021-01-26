@@ -4,15 +4,50 @@ import { types } from 'node-sass';
 
   <v-app>
     <!-- <v-navigation-drawer app> -->
-    <SideBar :sidebarItems="sidebarItems" />
+    <v-navigation-drawer
+      app
+      expand-on-hover
+      floating
+      elevation="0"
+      dark
+      color="#202020"
+      v-model="drawer"
+    >
+      <v-list>
+        <v-list-item class="px-2">
+          <v-list-item-avatar>
+            <v-img src="@/assets/ipl.jpg"></v-img>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              Search IPL
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list shaped nav dense>
+        <v-list-item-group mandatory v-model="selectedItem" color="primary">
+          <v-list-item v-for="(item, i) in sidebarItems" :key="i" :ripple="false">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.name"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
 
     <!-- </v-navigation-drawer> -->
 
     <v-app-bar app elevation="0" dark color="#202020">
+      <v-app-bar-nav-icon v-if="isMobile" @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>[Development - Demo]</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <!-- <v-app-bar-nav-icon @click.stop="sidebarMenu = !sidebarMenu"></v-app-bar-nav-icon> -->
 
       <v-text-field
         hide-details
@@ -32,7 +67,11 @@ import { types } from 'node-sass';
         </template>
 
         <v-list>
-          <v-list-item v-for="n in ['Dashboard', 'Profile', 'Log out']" :key="n" @click="() => {}">
+          <v-list-item
+            v-for="n in ['Dashboard', 'Profile', 'Log out']"
+            :key="n"
+            @click="() => {}"
+          >
             <v-list-item-title>{{ n }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -43,9 +82,8 @@ import { types } from 'node-sass';
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        
         <!-- If using vue-router -->
-        <router-view></router-view>
+        <router-view :isMobile="isMobile"></router-view>
       </v-container>
     </v-main>
   </v-app>
@@ -53,14 +91,33 @@ import { types } from 'node-sass';
 
 <script>
 // @ is an alias to /src
-import SideBar from '@/components/SideBar/SideBar.vue';
 import sidebarItems from '@/components/SideBar/sideBarItems.js';
 
 export default {
   name: 'Main',
-  components: { SideBar },
+  components: {},
   data: () => ({
     sidebarItems,
+    drawer: null,
+    isMobile: false,
+    active: 'home',
+    selectedItem: 0,
   }),
+  beforeDestroy() {
+    if (typeof window === 'undefined') return;
+
+    window.removeEventListener('resize', this.onResize, { passive: true });
+  },
+
+  mounted() {
+    this.onResize();
+
+    window.addEventListener('resize', this.onResize, { passive: true });
+  },
+  methods: {
+    onResize() {
+      this.isMobile = window.innerWidth < 960;
+    },
+  },
 };
 </script>
