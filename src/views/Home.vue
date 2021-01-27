@@ -76,7 +76,7 @@
                   <v-img
                     class="white--text align-end"
                     height="200px"
-                    src="@/assets/players/virat.jpg"
+                    src="@/assets/players/virat.png"
                   >
                     <v-card-title>Virat Kohli</v-card-title>
                   </v-img>
@@ -109,7 +109,7 @@ export default {
   props: {
     isMobile: {
       type: Boolean,
-    }
+    },
   },
   data: () => ({
     sort: '',
