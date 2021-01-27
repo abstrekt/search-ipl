@@ -29,7 +29,7 @@ import { types } from 'node-sass';
 
       <v-list shaped nav dense>
         <v-list-item-group mandatory v-model="selectedItem" color="primary">
-          <v-list-item v-for="(item, i) in sidebarItems" :key="i" :ripple="false">
+          <v-list-item :disabled='i != 0' v-for="(item, i) in sidebarItems" :key="i" :ripple="false">
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
