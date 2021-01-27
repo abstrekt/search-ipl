@@ -45,10 +45,10 @@ import { types } from 'node-sass';
 
     <v-app-bar app elevation="0" dark color="#202020">
       <v-app-bar-nav-icon v-if="isMobile" @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>[Development - Demo]</v-toolbar-title>
+      <v-toolbar-title>[Demo]</v-toolbar-title>
       <v-col>
-        <router-link :to="'/results'">
-        <v-btn color="primary">filter view</v-btn>
+        <router-link :to="this.$route.name == 'searchIPL' ? '/results' : 'search'">
+        <v-btn color="primary">{{this.$route.name == 'searchIPL' ? 'Filter View' : 'Normal View'}}</v-btn>
         </router-link>
       </v-col>
 
