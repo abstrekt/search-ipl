@@ -27,7 +27,7 @@
               ]"
             >
               <template v-slot:divider>
-                <v-icon>mdi-chevron-right</v-icon>
+                <v-icon>{{ mdiChevronRight }}</v-icon>
               </template>
             </v-breadcrumbs>
           </v-col>
@@ -41,7 +41,7 @@
               flat
               outlined
               rounded
-              prepend-icon="mdi-sort-ascending"
+              :prepend-icon="mdiSortAscending"
               item-color=""
               :items="['Player Name', 'Run Rate', 'Average']"
               v-model="sort"
@@ -53,12 +53,12 @@
             <v-btn-toggle tile :value="1" color="primary darken-3" mandatory dense>
               <v-btn :ripple="false" disabled>
                 <v-icon>
-                  mdi-format-list-bulleted
+                  {{ mdiFormatListBulleted }}
                 </v-icon>
               </v-btn>
               <v-btn :ripple="false">
                 <v-icon>
-                  mdi-view-grid-outline
+                  {{ mdiViewGridOutline }}
                 </v-icon>
               </v-btn>
             </v-btn-toggle>
@@ -104,6 +104,8 @@
 <script>
 // @ is an alias to /src
 import FacetFilter from '@/components/Filter/FacetFilter';
+import { mdiChevronRight, mdiViewGridOutline, mdiFormatListBulleted, mdiSortAscending, } from '@mdi/js';
+
 export default {
   name: 'Home',
   props: {
@@ -114,6 +116,10 @@ export default {
   data: () => ({
     sort: '',
     page: 1,
+    mdiChevronRight,
+    mdiFormatListBulleted,
+    mdiViewGridOutline,
+    mdiSortAscending,
   }),
   components: { FacetFilter },
 };

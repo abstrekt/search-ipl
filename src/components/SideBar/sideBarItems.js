@@ -1,18 +1,25 @@
+import {
+  mdiAccount,
+  mdiAccountGroup,
+  mdiAccountChildOutline,
+  mdiAirplaneTakeoff,
+} from '@mdi/js';
+
 export default [
   {
     name: 'Players',
-    icon: 'mdi-account',
+    icon: mdiAccount,
   },
   {
     name: 'Teams',
-    icon: 'mdi-account-group',
+    icon: mdiAccountGroup,
   },
   {
     name: 'Owners',
-    icon: 'mdi-account-child-outline',
+    icon: mdiAccountChildOutline,
   },
   {
     name: 'Venue',
-    icon: 'mdi-airplane-takeoff',
+    icon: mdiAirplaneTakeoff,
   },
 ];

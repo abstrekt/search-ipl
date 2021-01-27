@@ -29,9 +29,14 @@ import { types } from 'node-sass';
 
       <v-list shaped nav dense>
         <v-list-item-group mandatory v-model="selectedItem" color="primary">
-          <v-list-item :disabled='i != 0' v-for="(item, i) in sidebarItems" :key="i" :ripple="false">
+          <v-list-item
+            :disabled="i != 0"
+            v-for="(item, i) in sidebarItems"
+            :key="i"
+            :ripple="false"
+          >
             <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
+              <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title v-text="item.name"></v-list-item-title>
@@ -48,7 +53,9 @@ import { types } from 'node-sass';
       <v-toolbar-title>[Demo]</v-toolbar-title>
       <v-col>
         <router-link :to="this.$route.name == 'searchIPL' ? '/results' : 'search'">
-        <v-btn color="primary">{{this.$route.name == 'searchIPL' ? 'Filter View' : 'Normal View'}}</v-btn>
+          <v-btn color="primary">{{
+            this.$route.name == 'searchIPL' ? 'Filter View' : 'Normal View'
+          }}</v-btn>
         </router-link>
       </v-col>
 
@@ -67,7 +74,7 @@ import { types } from 'node-sass';
       <v-menu left bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on">
-            <v-icon>mdi-dots-vertical</v-icon>
+            <v-icon>{{ mdiDotsVertical }}</v-icon>
           </v-btn>
         </template>
 
@@ -109,12 +116,13 @@ import { types } from 'node-sass';
 <script>
 // @ is an alias to /src
 import sidebarItems from '@/components/SideBar/sideBarItems.js';
-
+import { mdiDotsVertical } from '@mdi/js'
 export default {
   name: 'Main',
   components: {},
   data: () => ({
     sidebarItems,
+    mdiDotsVertical,
     drawer: null,
     isMobile: false,
     active: 'home',
