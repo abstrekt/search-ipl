@@ -16,7 +16,7 @@ import { types } from 'node-sass';
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
-            <v-img src="@/assets/ipl.jpg"></v-img>
+            <v-img src="@/assets/index.svg"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
