@@ -293,7 +293,7 @@ export default {
       bat: false,
       bowl: false,
     },
-    teamDrop: false,
+    teamDrop: true,
     countryList: [
       'India',
       'Bangladesh',
