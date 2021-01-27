@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-3 pa-1 f-filter" width="300" flat outlined>
+  <v-card class="ma-3 pa-1 f-filter" width="300" flat>
     <v-row align-content="space-between">
       <v-col class="pb-0" cols="6">
         <span class="overline ml-3">Filter</span>

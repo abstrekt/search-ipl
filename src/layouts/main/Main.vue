@@ -2,7 +2,7 @@ import { types } from 'node-sass';
 <template>
   <!-- App.vue -->
 
-  <v-app>
+  <v-app :style="{'background': '#f7f7f7'}">
     <!-- <v-navigation-drawer app> -->
     <v-navigation-drawer
       app
