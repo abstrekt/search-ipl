@@ -29,7 +29,7 @@
 * The main sidebar has 4 options: namely `Players`, `Teams`, `Owners`, & `Venue` -- out of which only `Player` menu is active & rest are disabled, the idea being the facet filter would have different options depending on the menu selected, I have only wriiten logic for Players.
 * There are features only for showcase, logic is not defined. for ex. sort, grid view vs list view, etc.
 * In responsive view the facet-filter has been disabled, logic being not defined though filter button is displayed.
-
+* There is a toggle button in the App Bar to quickly switch to `filtered view` or back.
 
 
 ## Project setup
